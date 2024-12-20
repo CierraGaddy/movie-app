@@ -11,7 +11,7 @@ app.use(express.static(publicDirectory));
 
 // Root route to serve the HTML page
 app.get("", (req, res) => {
-  res.sendFile(path.join(publicDirectory, "index.html")); // Serve index.html
+  res.render(path.join(publicDirectory, "index.html")); // Serve index.html
 });
 
 // Route to search for movies
