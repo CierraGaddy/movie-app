@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require("express");
+const hbs = require("hbs");
 const fetchMoviesByName = require("./utils/fetchMoviesByName"); // Function to fetch movies
 const port = process.env.PORT || 3000;
 
@@ -7,11 +8,16 @@ const app = express();
 
 // Serve static files from the "public" directory
 const publicDirectory = path.join(__dirname, "../public");
+const vPath = path.join(__dirname, "../templates/views");
+
+app.set("view engine", "hbs");
+app.set("views", vPath);
+
 app.use(express.static(publicDirectory));
 
 // Root route to serve the HTML page
 app.get("", (req, res) => {
-  res.render(path.join(publicDirectory, "index.html")); // Serve index.html
+  res.render("index", { title: "Cierra" }); // Serve index.html
 });
 
 // Route to search for movies
